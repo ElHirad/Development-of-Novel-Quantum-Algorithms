@@ -38,7 +38,9 @@ Team Member 1:
 
 ### Project Solution:
 _Include a comprehensive summary of all important information about your project solution here._
-All necessary code files and any additional information required to judge your project solution should be included in the repository. 
+All necessary code files and any additional information required to judge your project solution should be included in the repository.
+
+Here, I implemented a case of the Hamiltonian simulation based on the paper of coupled oscilators. The simple case shows the solution for a Hamiltonian with 3 qubits which simulates a system with 2 masses and 3 springs. The circuit is optimized to have depth of no more than 50. With this depth, the results are achieved and is very close to the classical simulations. Also, the description for Hamiltonian simulation of 2 general problems are provided in task 2.
 
 ### Project Presentation Deck:
 _Link a 5min. presentation recording or deck here._
