@@ -1,0 +1,79 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+\section*{Coupled Oscilator for 1D System with 2 Masses}
+
+Assume a system of 2 Masses, each with displacement $x_i$, mass of $m$ and spring coeffitients $k_{12} = \kappa$, $k_{11} = k_{22} = k$. We have:
+
+$$| \psi(t) \rangle = \frac{1}{\sqrt{2E}}\begin{pmatrix}
+    \sqrt{m}\dot{x}_1(t) \\
+    \sqrt{m}\dot{x}_2(t) \\
+    ix_1(t) \\
+    ix_2(t) \\
+    i(x_1(t) - x_2(t))
+\end{pmatrix}$$
+
+Now, in order to find matrix $\textbf{B}$, we have:
+
+$$\sqrt{\textbf{M}}\textbf{B}|1,1\rangle = \sqrt{k}|1\rangle$$
+$$\sqrt{\textbf{M}}\textbf{B}|2,2\rangle = \sqrt{k}|2\rangle$$
+$$\sqrt{\textbf{M}}\textbf{B}|1,2\rangle = \sqrt{\kappa}(|1\rangle - |2\rangle)$$
+
+Since $\textbf{M} = \sqrt{m}\textbf{I}$, we have:
+
+$$\textbf{B} = \begin{pmatrix}
+    \sqrt{\frac{k}{m}} & 0 & \sqrt{\frac{\kappa}{m}} \\
+    0 & \sqrt{\frac{k}{m}} & -\sqrt{\frac{\kappa}{m}}
+\end{pmatrix}$$
+
+Hence, Our hamiltonian will be:
+
+$$\textbf{H} = \begin{pmatrix}
+    0 & 0 & \sqrt{\frac{k}{m}} & 0 & \sqrt{\frac{\kappa}{m}} \\
+    0 & 0 & 0 & \sqrt{\frac{k}{m}} & -\sqrt{\frac{\kappa}{m}} \\
+    \sqrt{\frac{k}{m}} & 0 & 0 & 0 & 0 \\
+    0 & \sqrt{\frac{k}{m}} & 0 & 0 & 0 \\
+    \sqrt{\frac{\kappa}{m}} & -\sqrt{\frac{\kappa}{m}} & 0 & 0 & 0
+\end{pmatrix}$$
+
+In order to make this to be implemented using 3 qubits, we must extend the hamiltonian to have the form:
+
+$$\textbf{H} = \begin{pmatrix}
+    0 & 0 & \sqrt{\frac{k}{m}} & 0 & \sqrt{\frac{\kappa}{m}} & 0 & 0 & 0 \\
+    0 & 0 & 0 & \sqrt{\frac{k}{m}} & -\sqrt{\frac{\kappa}{m}} & 0 & 0 & 0 \\
+    \sqrt{\frac{k}{m}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+    0 & \sqrt{\frac{k}{m}} & 0 & 0 & 0 & 0 & 0 & 0 \\
+    \sqrt{\frac{\kappa}{m}} & -\sqrt{\frac{\kappa}{m}} & 0 & 0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+\end{pmatrix}$$
+
+Therefore, we have this decomposition for the pauli strings:
+
+$$H = 0.5\sqrt{\frac{\kappa}{m}}XII + 0.5\sqrt{\frac{k}{m}}IXI + 0.5\sqrt{\frac{\kappa}{m}}XZI + 0.5\sqrt{\frac{k}{m}}ZXI $$
+$$+ 0.5\sqrt{\frac{\kappa}{m}}XIZ - 0.25\sqrt{\frac{\kappa}{m}}XIX - 0.25\sqrt{\frac{\kappa}{m}}YIY$$
+$$+ 0.5\sqrt{\frac{\kappa}{m}}XZZ - 0.25\sqrt{\frac{\kappa}{m}}XZX - 0.25\sqrt{\frac{\kappa}{m}}YZY$$
+
+For the simulations, we will start with these parameters:
+
+$$\kappa = 0.5, \quad k = 4, \quad m = 1$$
+$$x_1(0) = 1, \quad x_2(0) = 0, \quad \dot{x}_1(0) = 0, \quad \dot{x}_2 = 0$$
+
+So, the normalized initial state will be
+
+$$| \psi(0) \rangle = \frac{i}{\sqrt{2}}\begin{pmatrix}
+    0 \\
+    0 \\
+    1 \\
+    0 \\
+    1 \\
+    0 \\
+    0 \\
+    0
+\end{pmatrix}$$
+
+This is equivalent to creating the bell state $|\psi^+\rangle$ on qubits 0 and 1 and leave the qubit 2 alone. The simulation files are provided.
+
+\end{document}
